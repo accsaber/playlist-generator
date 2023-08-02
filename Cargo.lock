@@ -10,6 +10,7 @@ dependencies = [
  "mysql_async",
  "serde",
  "serde-env",
+ "serde_json",
  "tokio",
  "warp",
 ]

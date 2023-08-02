@@ -39,20 +39,20 @@ pub async fn generate_range_route(from: i64, to: i64, pool: Db) -> warp::reply::
         }
     };
 
-    let songs =
-        r"select difficulty, song, song_name from beat_map join song on song.song_hash = beat_map.song where date_ranked >= ? and date_ranked <= ?"
-            .with((from.to_string(), to.to_string()))
-            .map(&mut conn, |(difficulty, song_hash, song_name): (String, String, String)| {
-                crate::playlist::Song {
-                    song_name,
-                    hash: song_hash,
-                    difficulties: vec![Difficulty {
-                        characteristic: "Standard".to_string(),
-                        name: difficulty
-                    }]
-                }
-            })
-            .await;
+    let songs = include_str!("playlist.sql")
+        .with((from.to_string(), to.to_string()))
+        .map(
+            &mut conn,
+            |(difficulty, song_hash, song_name): (String, String, String)| crate::playlist::Song {
+                song_name,
+                hash: song_hash,
+                difficulties: vec![Difficulty {
+                    characteristic: "Standard".to_string(),
+                    name: difficulty,
+                }],
+            },
+        )
+        .await;
 
     drop(conn);
 
