@@ -3,6 +3,7 @@ select beat_map.date_ranked,
   song.song_name,
   song.level_author_name,
   beat_map.complexity,
+  beat_map.difficulty,
   song.beat_saver_key
 from beat_map
   left join category on beat_map.category_id = category.id

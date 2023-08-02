@@ -59,6 +59,7 @@ pub async fn generate_listing_route(from: i64, to: i64, pool: Db) -> warp::reply
                 "songName": row.get::<String, &str>("song_name"),
                 "levelAuthorName": row.get::<String, &str>("level_author_name"),
                 "categoryName": row.get::<String, &str>("category_display_name"),
+                "difficulty": row.get::<String, &str>("difficulty"),
                 "complexity": row.get::<f64, &str>("complexity"),
                 "beatSaverKey": row.get::<String, &str>("beat_saver_key"),
             })
