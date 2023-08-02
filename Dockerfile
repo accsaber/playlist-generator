@@ -5,7 +5,7 @@ WORKDIR /var/app
 COPY Cargo.* ./
 RUN cargo fetch
 RUN apt-get update
-RUN apt-get -y install libssl-dev openssl
+RUN apt-get -y install libssl-dev openssl pkg-config
 COPY . .
 RUN cargo build --release
 
