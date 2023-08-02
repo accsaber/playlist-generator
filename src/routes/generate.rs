@@ -64,7 +64,7 @@ pub async fn generate_range_route(from: i64, to: i64, pool: Db) -> warp::reply::
             playlist_author: "AccSaber".to_string(),
             songs,
             sync_url: Some(format!(
-                "https://api.accsaber.com/maps/ranked-between/{}/{}",
+                "https://api.accsaber.com/ranked-maps/between/{}/{}",
                 from.timestamp_millis(),
                 to.timestamp_millis()
             )),
